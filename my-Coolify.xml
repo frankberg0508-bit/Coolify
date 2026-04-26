@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Coolify</Name>
+  <Repository>ghcr.io/coollabsio/coolify:latest</Repository>
+  <Registry/>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support/>
+  <Project/>
+  <Overview>VORAUSSETZUNGEN:&#13;
+1. EXTERNE DATENBANKEN: Dieses Template benötigt eine separate PostgreSQL- (Port 5432) und Redis-Instanz (Port 6379).&#13;
+2. PRIVILEGIERT: Der Schalter 'Privilegierter Modus' MUSS aktiviert sein, damit Coolify Docker-Befehle ausführen kann.&#13;
+3. PORT: Intern nutzt das Image Port 8080. Dieses Template leitet externen Traffic von Port 8000 auf 8080 weiter.&#13;
+4. APP_KEY: Generiere einen sicheren APP_KEY (base64) und ändere ihn nach der Installation nie wieder!&#13;
+Beispiel: (base64:7vYp3pX6z6W8Q6V6z6W8Q6V6z6W8Q6V6z6W8Q6V6z6U=)</Overview>
+  <Category>Tools: Cloud</Category>
+  <WebUI>http://[IP]:[PORT:8000]</WebUI>
+  <TemplateURL/>
+  <Icon>https://cdn.coollabs.io/assets/coolify/logo.png</Icon>
+  <ExtraParams>--add-host=host.docker.internal:host-gateway</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1777223945</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Dashboard" Target="8080" Default="8000" Mode="tcp" Description="Interner Port des Containers: 8080" Type="Port" Display="always" Required="false" Mask="false">8000</Config>
+  <Config Name="AppData" Target="/data/coolify" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/coolify/data</Config>
+  <Config Name="REDIS_HOST" Target="REDIS_HOST" Default="" Mode="" Description="IP-Adresse deines Redis-Servers" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="REDIS_PORT" Target="REDIS_PORT" Default="6379" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false">6379</Config>
+  <Config Name="DB_HOST" Target="DB_HOST" Default="" Mode="" Description="IP-Adresse deines PostgreSQL-Servers" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="DB_PORT" Target="DB_PORT" Default="5432" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false">5432</Config>
+  <Config Name="DB_DATABASE" Target="DB_DATABASE" Default="coolify" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false">coolify</Config>
+  <Config Name="DB_USERNAME" Target="DB_USERNAME" Default="user" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false">user</Config>
+  <Config Name="DB_PASSWORD" Target="DB_PASSWORD" Default="" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="APP_KEY" Target="APP_KEY" Default="" Mode="" Description="AES-256 Key (base64:...). Darf NIE MEHR geändert werden!" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="REDIS_CLIENT" Target="REDIS_CLIENT" Default="" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">phpredis</Config>
+  <Config Name="SESSION_DRIVER" Target="SESSION_DRIVER" Default="" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">redis</Config>
+  <Config Name="QUEUE_CONNECTION" Target="QUEUE_CONNECTION" Default="" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">redis</Config>
+  <Config Name="CACHE_DRIVER" Target="CACHE_DRIVER" Default="" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">redis</Config>
+  <Config Name="DB_CONNECTION" Target="DB_CONNECTION" Default="" Mode="" Description="" Type="Variable" Display="advanced" Required="false" Mask="false">pgsql</Config>
+  <Config Name="Docker Socket" Target="/var/run/docker.sock" Default="" Mode="rw" Description="" Type="Path" Display="advanced" Required="true" Mask="false">/var/run/docker.sock</Config>
+  <TailscaleStateDir/>
+</Container>
